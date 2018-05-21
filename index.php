@@ -19,7 +19,11 @@ $_GET = null;
 $_POST = null;
 $_SERVER = null;
 
-$request = Request::getInstance();
+try {
+    $request = Request::getInstance();
+} catch (Exception $e) {
+    echo $e->getMessage();die;
+}
 
 session_start();
 
@@ -27,13 +31,22 @@ session_start();
 include_once('Core/helpers.php');
 
 // Load controllers from uri
-$request_uri = $request->server('REQUEST_URI');
+try {
+    $request_uri = $request->server('REQUEST_URI');
+} catch (Exception $e) {
+    echo $e->getMessage();die;
+}
+
 $index = strpos($request_uri, '?');
 
 if ($index != false) {
     $request_uri = substr($request_uri, 0, $index);
 }
 
-$response = Route::execute($request_uri);
+try {
+    $response = Route::execute($request_uri);
+} catch (Exception $e) {
+    echo $e->getMessage();die;
+}
 
 echo $response;

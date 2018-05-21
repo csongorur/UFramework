@@ -33,7 +33,7 @@ abstract class Model
      * @param  string $string
      * @return string
      */
-    private function escape(string $string)
+    private function escape($string)
     {
         return $this->connection->real_escape_string($string);
     }
@@ -71,6 +71,7 @@ abstract class Model
     /**
      * Throw exception when data array is empty.
      * @param  array|null $data
+     * @throws \Exception
      */
     private function checkData(array $data = null)
     {
@@ -83,8 +84,9 @@ abstract class Model
     /**
      * Throw exception when id is empty.
      * @param  string $id
+     * @throws \Exception
      */
-    private function checkString(string $id = '')
+    private function checkString($id = '')
     {
         if ($id == '') {
             throw new \Exception("Param is empty", 1);
@@ -109,7 +111,7 @@ abstract class Model
      * @param  string    $id
      * @return array
      */
-    public function find(string $id)
+    public function find($id)
     {
         $query = sprintf('SELECT * FROM %s WHERE ID = %s LIMIT 1', $this->getTable(), $this->escape($id));
 
@@ -124,8 +126,9 @@ abstract class Model
      * @param  string $op
      * @param  string $data
      * @return array
+     * @throws \Exception
      */
-    public function where(string $col = '', string $op = '=', string $data = '')
+    public function where($col = '', $op = '=', $data = '')
     {
         $this->checkString($col);
         $this->checkString($op);
@@ -145,8 +148,9 @@ abstract class Model
 
     /**
      * Create a record.
-     * @param  array  $data
+     * @param  array $data
      * @return array
+     * @throws \Exception
      */
     public function create(array $data = null)
     {
@@ -182,11 +186,12 @@ abstract class Model
 
     /**
      * Update a specified record.
-     * @param  string     $id
+     * @param  string $id
      * @param  array|null $data
      * @return array
+     * @throws \Exception
      */
-    public function update(string $id = '', array $data = null)
+    public function update($id = '', array $data = null)
     {
         $this->checkString($id);
         $this->checkData($data);
@@ -213,10 +218,11 @@ abstract class Model
 
     /**
      * Delete a specified record
-     * @param  string $id
+     * @param string $id
      * @return array
+     * @throws \Exception
      */
-    public function delete(string $id = '')
+    public function delete($id = '')
     {
         $this->checkString($id);
 

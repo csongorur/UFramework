@@ -6,21 +6,35 @@ use Core\Session;
 
 if (!function_exists('asset')) {
     function asset($url) {
-        $url = 'http://' . Request::getInstance()->server('SERVER_NAME') . DIRECTORY_SEPARATOR . App::$base_url . DIRECTORY_SEPARATOR . 'public'. DIRECTORY_SEPARATOR . $url;
+        try {
+            $url = 'http://' . Request::getInstance()->server('SERVER_NAME') . DIRECTORY_SEPARATOR . App::$base_url . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . $url;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
         return $url;
     }
 }
 
 if (!function_exists('assetByUrl')) {
-     function assetByUrl(string $url) {
-         $url = 'http://' . Request::getInstance()->server('SERVER_NAME') . DIRECTORY_SEPARATOR . $url;
-        return $url;
+     function assetByUrl($url) {
+         try {
+             $url = 'http://' . Request::getInstance()->server('SERVER_NAME') . DIRECTORY_SEPARATOR . $url;
+         } catch (Exception $e) {
+             return $e->getMessage();
+         }
+
+         return $url;
      }
 }
 
 if (!function_exists('authUsername')) {
     function authUsername() {
-        return Session::getInstance()->get('user');
+        try {
+            return Session::getInstance()->get('user');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     } 
 }
 
@@ -32,12 +46,16 @@ if (!function_exists('authCheck')) {
 
 if (!function_exists('getUri')) {
     function getUri() {
-        return Request::getInstance()->server('REQUEST_URI');
+        try {
+            return Request::getInstance()->server('REQUEST_URI');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
 
 if (!function_exists('url')) {
-    function url(string $url) {
+    function url($url) {
         return App::$base_url . $url;
     }
 }

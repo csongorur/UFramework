@@ -14,7 +14,7 @@ class Response
      * @param string $url
      * @return mix
      */
-    public static function redirect(string $url)
+    public static function redirect($url)
     {
         return header('Location: '. App::$base_url .$url);
     }

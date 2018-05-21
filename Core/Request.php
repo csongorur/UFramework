@@ -37,6 +37,7 @@ class Request
     /**
      * Get the request instance.
      * @return Request
+     * @throws \Exception
      */
     public static function getInstance()
     {
@@ -50,8 +51,9 @@ class Request
     /**
      * Throw exception when name is empty.
      * @param  string $name
+     * @throws \Exception
      */
-    private function checkName(string $name = '')
+    private function checkName($name = '')
     {
         if ($name == '') {
             throw new \Exception("Name is empty!", 1);
@@ -62,8 +64,9 @@ class Request
      * Get the get item by name.
      * @param  string $name
      * @return  mix
+     * @throws \Exception
      */
-    public function get(string $name = '')
+    public function get($name = '')
     {
         $this->checkName($name);
 
@@ -78,8 +81,9 @@ class Request
      * Get the post item by name.
      * @param  string $name
      * @return mix
+     * @throws \Exception
      */
-    public function post(string $name = '')
+    public function post($name = '')
     {
         $this->checkName($name);
 
@@ -94,8 +98,9 @@ class Request
      * Get the server item by name.
      * @param  string $name
      * @return mix
+     * @throws \Exception
      */
-    public function server(string $name = '')
+    public function server($name = '')
     {
         $this->checkName($name);
 
@@ -105,37 +110,40 @@ class Request
             throw new \Exception("The name not exist!", 1);
         }
     }
-    
+
     /**
      * Check if a item exist in post array by name.
      * @param string $name
      * @return boolean
+     * @throws \Exception
      */
-    public function hasPost(string $name = '')
+    public function hasPost($name = '')
     {
         $this->checkName($name);
         
         return array_key_exists($name, $this->post);
     }
-    
+
     /**
      * Check if a item exist in get array by name.
      * @param string $name
      * @return boolean
+     * @throws \Exception
      */
-    public function hasGet(string $name = '')
+    public function hasGet($name = '')
     {
         $this->checkName($name);
         
         return array_key_exists($name, $this->get);
     }
-    
+
     /**
      * Check if a item exist in server array by name.
      * @param string $name
      * @return boolean
+     * @throws \Exception
      */
-    public function hasServer(string $name = '')
+    public function hasServer($name = '')
     {
         $this->checkName($name);
         

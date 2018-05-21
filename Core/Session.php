@@ -35,7 +35,7 @@ class Session
      * @return string
      * @throws \Exception
      */
-    public function get(string $key)
+    public function get($key)
     {
         if (array_key_exists($key, $this->session)) {
             return $this->session[$key];
@@ -50,7 +50,7 @@ class Session
      * @param string $value
      * @return Session
      */
-    public function add(string $key, string $value)
+    public function add($key, $value)
     {
         $this->session[$key] = $value;
         $_SESSION[$key] = $value;
@@ -63,7 +63,7 @@ class Session
      * @param string $key
      * @return Session
      */
-    public function remove(string $key)
+    public function remove($key)
     {
         unset($this->session[$key]);
         unset($_SESSION[$key]);
@@ -76,7 +76,7 @@ class Session
      * @param string $key
      * @return boolean
      */
-    public function check(string $key)
+    public function check($key)
     {
        return array_key_exists($key, $this->session);
     }

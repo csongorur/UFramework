@@ -8,7 +8,12 @@ use Route\Web;
 
 class Route
 {
-    public static function execute(string $uri = null)
+    /**
+     * @param string|null $uri
+     * @return mixed
+     * @throws Exception
+     */
+    public static function execute($uri = null)
     {
         $routes = Web::getRoutes();
 
