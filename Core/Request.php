@@ -12,7 +12,7 @@ class Request
     private $server;
     private static $instance = null;
 
-    private function __construct(array $get , array $post, array $server)
+    private function __construct($get , $post, $server)
     {
         $this->get = $get;
         $this->post = $post;
@@ -21,11 +21,12 @@ class Request
 
     /**
      * Init request object.
-     * @param  array  $get
-     * @param  array  $post
+     * @param  array $get
+     * @param  array $post
+     * @param  array $server
      * @return Request
      */
-    public static function init(array $get, array $post, array $server)
+    public static function init($get, $post, $server)
     {
         if (is_null(self::$instance)) {
             self::$instance = new Request($get, $post, $server);

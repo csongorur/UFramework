@@ -11,7 +11,7 @@ class Session
     private $session;
     public static $instance = null;
     
-    private function __construct(array $session)
+    private function __construct($session)
     {
         $this->session = $session;
     }

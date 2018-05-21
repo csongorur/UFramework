@@ -73,7 +73,7 @@ abstract class Model
      * @param  array|null $data
      * @throws \Exception
      */
-    private function checkData(array $data = null)
+    private function checkData($data = null)
     {
         if (is_null($data)) {
             throw new \Exception("Data array is empty", 1);
@@ -152,7 +152,7 @@ abstract class Model
      * @return array
      * @throws \Exception
      */
-    public function create(array $data = null)
+    public function create($data = null)
     {
         $this->checkData($data);
 
@@ -191,7 +191,7 @@ abstract class Model
      * @return array
      * @throws \Exception
      */
-    public function update($id = '', array $data = null)
+    public function update($id = '', $data = null)
     {
         $this->checkString($id);
         $this->checkData($data);

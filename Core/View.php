@@ -10,7 +10,7 @@ class View
     private $data;
     private $file;
             
-    function __construct(string $view_name)
+    function __construct($view_name)
     {
         $this->file = ROOT . 'View/' . strtolower($view_name) . '.php';
         $this->data = [];
@@ -26,7 +26,7 @@ class View
         return $content;
     }
     
-    public function assign(array $data)
+    public function assign($data)
     {
         $this->data = $data;
     }
