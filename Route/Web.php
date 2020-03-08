@@ -7,7 +7,7 @@ class Web
     public static function getRoutes()
     {
         return [
-            '/' => ['ExempleController' => 'index'],
+            '/' => ['ExampleController' => 'index'],
         ];
     }
 }
